@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'
 
+const user_url = axios.create({
+  baseURL: 'http://localhost:4000'
+})
+
+
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const [usuario, setUsuario] = useState('');
   const [password, setPassword] = useState('');
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUsuario(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -16,8 +21,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log( { username, password } )
-    axios.post('http://localhost:4000/login', { username, password }, { withCredentials: true })
+    user_url.post(import.meta.env.VITE_BACKSERVER_HOST, { usuario, password }, { withCredentials: true })
       .then((response) => {
         console.log(response.data);
       })
@@ -29,11 +33,11 @@ const LoginForm = () => {
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="usuario">Username:</label>
         <input
           type="text"
-          id="username"
-          value={username}
+          id="usuario"
+          value={usuario}
           onChange={handleUsernameChange}
         />
         <label htmlFor="password">Password:</label>
