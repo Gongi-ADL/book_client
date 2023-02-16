@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Login.css'
 
 const user_url = axios.create({
-  baseURL: 'http://localhost:4000'
+  baseURL: import.meta.env.VITE_BACKSERVER_HOST
 })
 
 
@@ -21,7 +21,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    user_url.post(import.meta.env.VITE_BACKSERVER_HOST, { usuario, password }, { withCredentials: true })
+    user_url.post('/login', { usuario, password }, { withCredentials: true })
       .then((response) => {
         console.log(response.data);
       })
