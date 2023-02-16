@@ -8,16 +8,14 @@ const user_url = axios.create({
 
 
 const LoginForm = () => {
-  const [usuario, setUsuario] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    usuario: '',
+    password: ''
+  })
 
-  const handleUsernameChange = (event) => {
-    setUsuario(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const changeHandler = (event) => {
+    setUser({...user, [event.target.name] : event.target.value})
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,6 +27,8 @@ const LoginForm = () => {
         console.error(error);
       });
   };
+
+  const {usuario, password} = user
   
   return (
     <div className="container">
@@ -37,15 +37,17 @@ const LoginForm = () => {
         <input
           type="text"
           id="usuario"
+          name='usuario'
           value={usuario}
-          onChange={handleUsernameChange}
+          onChange={changeHandler}
         />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
+          name='password'
           value={password}
-          onChange={handlePasswordChange}
+          onChange={changeHandler}
         />
         <button type="submit">Submit</button>
       </form>
