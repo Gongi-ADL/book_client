@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'
 
-const user_url = axios.create({
-  baseURL: import.meta.env.VITE_BACKSERVER_HOST
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_BACKSERVER_HOST,
+  withCredentials: true
 })
 
 
@@ -17,9 +18,9 @@ const LoginForm = () => {
     setUser({...user, [event.target.name] : event.target.value})
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    user_url.post('/login', { usuario, password }, { withCredentials: true })
+    await axiosInstance.post('/login', { usuario, password })
       .then((response) => {
         console.log(response.data);
       })
