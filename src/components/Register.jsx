@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import './Register.css'
 import {useNavigate} from 'react-router-dom'
+import axiosInstance from '../utils/api/axiosInstance'
 const Register = () => {
   const Navigate = useNavigate()
     const [user, setUser] = useState({
@@ -14,10 +14,7 @@ const Register = () => {
       setUser({...user, [event.target.name] : event.target.value})
     }
 
-    const axiosInstance = axios.create({
-        baseURL: import.meta.env.VITE_BACKSERVER_HOST,
-        withCredentials: true
-      })
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();

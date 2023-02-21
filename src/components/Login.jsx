@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Login.css'
-
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BACKSERVER_HOST,
-  withCredentials: true
-})
+import axiosInstance from '../utils/api/axiosInstance';
 
 
 const LoginForm = () => {
+
   const [user, setUser] = useState({
     usuario: '',
     password: ''
