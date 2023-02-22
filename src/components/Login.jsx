@@ -17,13 +17,12 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axiosInstance.post('/login', { usuario, password })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const loginValues = await axiosInstance.post('/login', { usuario, password })
+    }
+    catch(error){
+      console.error(error);
+    }
   };
 
   const {usuario, password} = user
