@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Login.css'
+import axiosInstance from '../utils/api/axiosInstance';
+
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+  const [user, setUser] = useState({
+    usuario: '',
+    password: ''
+  })
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const changeHandler = (event) => {
+    setUser({...user, [event.target.name] : event.target.value})
+  }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log( { username, password } )
-    axios.post('http://localhost:4000/login', { username, password }, { withCredentials: true })
+    await axiosInstance.post('/login', { usuario, password })
       .then((response) => {
         console.log(response.data);
       })
@@ -25,23 +24,27 @@ const LoginForm = () => {
         console.error(error);
       });
   };
+
+  const {usuario, password} = user
   
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="usuario">Username:</label>
         <input
           type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
+          id="usuario"
+          name='usuario'
+          value={usuario}
+          onChange={changeHandler}
         />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
+          name='password'
           value={password}
-          onChange={handlePasswordChange}
+          onChange={changeHandler}
         />
         <button type="submit">Submit</button>
       </form>
