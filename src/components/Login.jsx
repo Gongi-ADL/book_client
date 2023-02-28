@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'
 import axiosInstance from '../utils/api/axiosInstance';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 
 const LoginForm = () => {
@@ -15,14 +16,16 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    await axiosInstance.post('/login', { usuario, password })
-      .then((response) => {
+    try{
+      event.preventDefault();
+      await axiosInstance.post('/login', { usuario, password })
+        .then((response) => {
         console.log(response.data);
+        window.localStorage.setItem('loggeado', 'logged')
       })
-      .catch((error) => {
+    }catch(error) {
         console.error(error);
-      });
+      };
   };
 
   const {usuario, password} = user

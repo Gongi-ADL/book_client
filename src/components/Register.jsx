@@ -17,15 +17,18 @@ const Register = () => {
 
 
     const handleSubmit = async (event) => {
+      try{
         event.preventDefault();
-        await axiosInstance.post('/register', { usuario, email, password })
-          .then((response) => {
+          await axiosInstance.post('/register', { usuario, email, password })
+            .then((response) => {
             console.log(response.data);
             Navigate('/login')
           })
-          .catch((error) => {
+        }catch(error) {
             console.error(error);
-          });
+          };
+      }
+
       };
       const {usuario, email, password} = user
   
