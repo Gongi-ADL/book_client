@@ -29,7 +29,6 @@ const Register = () => {
           };
       }
 
-      };
       const {usuario, email, password} = user
   
       return (
@@ -63,5 +62,6 @@ const Register = () => {
           </form>
         </div>
       )
+    };
 
 export default Register
