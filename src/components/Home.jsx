@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../utils/api/axiosInstance'
 import './Home.css'
 import Navbar from './Navbar'
 const Home = () => {
+    const Navigate = useNavigate()
     const [Books, setBooks] = useState([])
     useEffect(() => {
         const getBook = async () =>{
@@ -15,11 +17,20 @@ const Home = () => {
             }
         }
         getBook()
+
+        const logConfirm = async () => {
+            const getLog = window.localStorage.getItem('loggeado')
+            if(getLog == 'logged') {
+
+            } else {
+                Navigate('/login')
+            }
+        }
+        logConfirm()
     })
-    
   return (
     <div>
-        <Navbar /> 
+        <Navbar />
         <div className='book-container'></div>
         {Books.map(book => (<div key={book.id_book} className='book-card'>
         <h1 className='book-title'> {book.book_name} </h1>
