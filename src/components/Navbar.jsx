@@ -12,6 +12,7 @@ const Navbar = () => {
       const response = await axiosInstance.get('/logout')
       response ? console.log(response.data) : console.log('No existen datos de respuesta')
       Navigate('/login')
+      window.localStorage.setItem('loggeado', 'deslogeado')
     } catch (error) {
       console.error(error)
     }

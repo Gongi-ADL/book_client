@@ -7,7 +7,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 const LoginForm = () => {
 
   const [user, setUser] = useState({
-    usuario: '',
+    email: '',
     password: ''
   })
 
@@ -18,7 +18,7 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     try{
       event.preventDefault();
-      await axiosInstance.post('/login', { usuario, password })
+      await axiosInstance.post('/login', { email, password })
         .then((response) => {
         console.log(response.data);
         window.localStorage.setItem('loggeado', 'logged')
@@ -28,17 +28,17 @@ const LoginForm = () => {
       };
   };
 
-  const {usuario, password} = user
+  const {email, password} = user
   
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="usuario">Username:</label>
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
-          id="usuario"
-          name='usuario'
-          value={usuario}
+          id="email"
+          name='email'
+          value={email}
           onChange={changeHandler}
         />
         <label htmlFor="password">Password:</label>
