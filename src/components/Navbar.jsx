@@ -9,8 +9,7 @@ const Navbar = () => {
   const Navigate = useNavigate()
   const handleLogout = async () => {
     try{
-      const response = await axiosInstance.get('/logout')
-      response ? console.log(response.data) : console.log('No existen datos de respuesta')
+      await axiosInstance.get('/logout')
       Navigate('/login')
       window.localStorage.setItem('loggeado', 'deslogeado')
     } catch (error) {

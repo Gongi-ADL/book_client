@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './Login.css'
 import axiosInstance from '../utils/api/axiosInstance';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
-
+  const Navigate = useNavigate()
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -18,12 +19,10 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     try{
       event.preventDefault();
-      await axiosInstance.post('/login', { email, password })
-        .then((response) => {
-        console.log(response.data);
+        await axiosInstance.post('/login', { email, password })
         window.localStorage.setItem('loggeado', 'logged')
-      })
-    }catch(error) {
+        Navigate('/home')      
+    } catch(error) {
         console.error(error);
       };
   };

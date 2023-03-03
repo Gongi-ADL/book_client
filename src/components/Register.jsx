@@ -18,13 +18,10 @@ const Register = () => {
 
     const handleSubmit = async (event) => {
       try{
-        event.preventDefault();
-          await axiosInstance.post('/register', { usuario, email, password })
-            .then((response) => {
-            console.log(response.data);
+            event.preventDefault();
+            await axiosInstance.post('/register', { usuario, email, password })
             Navigate('/login')
-          })
-        }catch(error) {
+        } catch(error) {
             console.error(error);
           };
       }

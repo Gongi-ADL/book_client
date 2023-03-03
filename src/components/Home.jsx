@@ -6,28 +6,29 @@ import Navbar from './Navbar'
 const Home = () => {
     const Navigate = useNavigate()
     const [Books, setBooks] = useState([])
-    useEffect(() => {
-        const getBook = async () =>{
+    const getBook = async () =>{
 
-            try{
-                const response = await axiosInstance.get('/book')
-                setBooks(response.data)
-            } catch (error) {
-                console.error(error)
-            }
+        try{
+            const response = await axiosInstance.get('/book')
+            setBooks(response.data)
+        } catch (error) {
+            console.error(error)
         }
-        getBook()
+    }
 
-        const logConfirm = async () => {
+    const logConfirm = async () => {
+        try {
             const getLog = window.localStorage.getItem('loggeado')
             if(getLog == 'logged') {
 
             } else {
                 Navigate('/login')
             }
+        } catch (error) {
+            console.error(error)
         }
-        logConfirm()
-    })
+    }
+    useEffect(() => { getBook(), logConfirm()})
   return (
     <div>
         <Navbar />
