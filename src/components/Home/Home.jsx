@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../../utils/api/axiosInstance'
 import './Home.css'
 import Navbar from '../Navbar/Navbar'
+import ProtectRoutes from '../../utils/ProtectRoutes'
 const Home = () => {
-    const Navigate = useNavigate()
+    const protectRoutes = ProtectRoutes()
     const [Books, setBooks] = useState([])
     const getBook = async () =>{
 
@@ -15,20 +15,7 @@ const Home = () => {
             console.error(error)
         }
     }
-
-    const logConfirm = async () => {
-        try {
-            const getLog = window.localStorage.getItem('loggeado')
-            if(getLog == 'logged') {
-
-            } else {
-                Navigate('/login')
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
-    useEffect(() => { getBook(), logConfirm()})
+    useEffect(() => { getBook(), protectRoutes})
   return (
     <div>
         <Navbar />
