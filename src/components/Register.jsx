@@ -17,16 +17,15 @@ const Register = () => {
 
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        await axiosInstance.post('/register', { usuario, email, password })
-          .then((response) => {
-            console.log(response.data);
+      try{
+            event.preventDefault();
+            await axiosInstance.post('/register', { usuario, email, password })
             Navigate('/login')
-          })
-          .catch((error) => {
+        } catch(error) {
             console.error(error);
-          });
-      };
+          };
+      }
+
       const {usuario, email, password} = user
   
       return (
@@ -60,6 +59,6 @@ const Register = () => {
           </form>
         </div>
       )
-}
+    };
 
 export default Register

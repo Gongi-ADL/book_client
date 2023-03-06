@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css'
 import axiosInstance from '../utils/api/axiosInstance';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
-
+  const Navigate = useNavigate()
   const [user, setUser] = useState({
-    usuario: '',
+    email: '',
     password: ''
   })
 
@@ -15,27 +17,27 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    await axiosInstance.post('/login', { usuario, password })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
+    try{
+      event.preventDefault();
+        await axiosInstance.post('/login', { email, password })
+        window.localStorage.setItem('loggeado', 'logged')
+        Navigate('/home')      
+    } catch(error) {
         console.error(error);
-      });
+      };
   };
 
-  const {usuario, password} = user
+  const {email, password} = user
   
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="usuario">Username:</label>
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
-          id="usuario"
-          name='usuario'
-          value={usuario}
+          id="email"
+          name='email'
+          value={email}
           onChange={changeHandler}
         />
         <label htmlFor="password">Password:</label>
