@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import axiosInstance from '../utils/api/axiosInstance'
+import axiosInstance from '../../utils/api/axiosInstance'
 
 //importando diseños:
 import './Navbar.css'

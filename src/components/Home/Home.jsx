@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axiosInstance from '../utils/api/axiosInstance'
+import axiosInstance from '../../utils/api/axiosInstance'
 import './Home.css'
-import Navbar from './Navbar'
+import Navbar from '../Navbar/Navbar'
 const Home = () => {
     const Navigate = useNavigate()
     const [Books, setBooks] = useState([])

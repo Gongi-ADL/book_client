@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Register.css'
 import {useNavigate} from 'react-router-dom'
-import axiosInstance from '../utils/api/axiosInstance'
+import axiosInstance from '../../utils/api/axiosInstance'
 const Register = () => {
   const Navigate = useNavigate()
     const [user, setUser] = useState({

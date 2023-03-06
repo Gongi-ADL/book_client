@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'
-import axiosInstance from '../utils/api/axiosInstance';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import axiosInstance from '../../utils/api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
 
