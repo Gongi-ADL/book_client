@@ -1,0 +1,12 @@
+.book-container{
+    display: flex;
+    height: 600px;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex: 33%;
+    flex-wrap: wrap;
+}
+
+.book-card{
+    background-color: whitesmoke;
+}

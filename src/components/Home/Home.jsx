@@ -18,14 +18,16 @@ const Home = () => {
     useEffect(() => { getBook(), protectRoutes})
   return (
     <div>
-        <Navbar />
-        <div className='book-container'></div>
+        <Navbar /> 
+    <div className='book-container'>
         {Books.map(book => (<div key={book.id_book} className='book-card'>
         <h1 className='book-title'> {book.book_name} </h1>
         <h2 className='book-price'> {book.book_price} </h2>
         <h3 className='book-date'> {book.book_date} </h3>
+        <button className='desc-button'> Ver mas </button>
         </div>)
         )}
+    </div>
     </div>
   )
 }
