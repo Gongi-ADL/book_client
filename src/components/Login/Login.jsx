@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css'
-import axiosInstance from '../../utils/api/axiosInstance';
+import { handleLogin } from '../../utils/api/fetch/axiosActions';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/api/axiosInstance';
 
 
 const LoginForm = () => {
@@ -14,26 +15,24 @@ const LoginForm = () => {
   const changeHandler = (event) => {
     setUser({...user, [event.target.name] : event.target.value})
   }
+  const {email, password} = user
 
   const handleSubmit = async (event) => {
-    try{
-      event.preventDefault();
-        await axiosInstance.post('/login', { email, password })
-        window.localStorage.setItem('loggeado', 'logged')
-        Navigate('/home')      
-    } catch(error) {
-        console.error(error);
-      };
-  };
+    try {
+    event.preventDefault()
+      await handleLogin(email, password)
+      Navigate('/home')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-  const {email, password} = user
-  
   return (
     <div className="container">
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form">
         <label htmlFor="email">Email:</label>
         <input
-          type="text"
+          type="email"
           id="email"
           name='email'
           value={email}
@@ -47,7 +46,7 @@ const LoginForm = () => {
           value={password}
           onChange={changeHandler}
         />
-        <button type="submit">Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

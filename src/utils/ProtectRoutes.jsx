@@ -5,8 +5,8 @@ const ProtectRoutes = () => {
     const Navigate = useNavigate()
         try {
             const getLog = window.localStorage.getItem('loggeado')
-            if(getLog == 'logged') {
-
+            if(getLog == 'logged' && document.cookie.includes('session_token')) {
+                
             } else {
                 Navigate('/login')
             }

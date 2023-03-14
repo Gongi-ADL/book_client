@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Register.css'
 import {useNavigate} from 'react-router-dom'
 import axiosInstance from '../../utils/api/axiosInstance'
+import { handleRegister } from '../../utils/api/fetch/axiosActions';
 const Register = () => {
   const Navigate = useNavigate()
     const [user, setUser] = useState({
@@ -19,7 +20,7 @@ const Register = () => {
     const handleSubmit = async (event) => {
       try{
             event.preventDefault();
-            await axiosInstance.post('/register', { usuario, email, password })
+            await handleRegister(usuario, email, password)
             Navigate('/login')
         } catch(error) {
             console.error(error);

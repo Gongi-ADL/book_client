@@ -24,8 +24,7 @@ const Navbar = () => {
       </div>
       <div className='nav'>
         <a onClick={() => Navigate('/home')}>Home</a>
-        <a>Somewhere</a>
-        <a>Somewhere</a>
+        <a onClick={() => Navigate('/about')}>About Us</a>
         <a onClick={handleLogout}>Logout</a>
       </div>
     </header>
