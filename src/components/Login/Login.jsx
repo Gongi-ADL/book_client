@@ -22,7 +22,6 @@ const LoginForm = () => {
     password: ''
   }, validateOnBlur: true, 
   onSubmit})
-  })
 
   const changeHandler = (event) => {
     setUser({...user, [event.target.name] : event.target.value})
