@@ -1,5 +1,4 @@
 import React from 'react'
-
 import './About.css'
 import {useNavigate} from 'react-router-dom'
 const About = () => {
@@ -13,10 +12,6 @@ const About = () => {
                     Go Home
                 </span>
             </div>
-const About = () => {
-    return (
-        <div>
-            <h1>About us and the Project</h1>
             <hr />
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem, perferendis 
                 est! Architecto aliquam autem, aperiam eligendi aut labore 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: "https://libreria-production.up.railway.app",
+    baseURL: import.meta.env.VITE_BACKSERVER_HOST,
     withCredentials: true
   })
 

@@ -1,5 +1,4 @@
 .card-container{
-
 background-color: white;
 max-width: 1200px;
 height: 500px;
@@ -88,20 +87,4 @@ hr{
     margin-bottom: 10px;
 }
 
-
-=======
-    width: 60%;
-    height: 50%;
-    background-color: aliceblue;
-    border-radius: 30px;
-    display: flex;
-    flex: 50%;
-    overflow: hidden;
-}
-
-
-.img-book img{
-    width: 100%;
-    height: 100%;
-}
 

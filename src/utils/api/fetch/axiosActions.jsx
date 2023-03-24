@@ -1,10 +1,7 @@
+
 import axiosInstance from "../axiosInstance"
 
 const getBook = async (id) => {
-import { useNavigate } from "react-router-dom"
-import axiosInstance from "../axiosInstance"
-
-const handleBook = async (id) => {
     try {
         const response = await axiosInstance.get(`/book/${id}`)
         return response.data[0]
@@ -14,7 +11,6 @@ const handleBook = async (id) => {
 }
 
 const getBooks = async () =>{
-const getBook = async () =>{
 
     try{
         const response = await axiosInstance.get('/book')
@@ -95,9 +91,4 @@ export {
     handleUpdate,
     createAuthor,
     getAuthor
-export {
-    handleBook,
-    getBook,
-    handleLogin,
-    handleRegister
 }
