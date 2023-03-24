@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css'
 import { handleLogin } from '../../utils/api/fetch/axiosActions';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import axiosInstance from '../../utils/api/axiosInstance';
 
 
 const LoginForm = () => {
@@ -21,6 +22,22 @@ const LoginForm = () => {
     password: ''
   }, validateOnBlur: true, 
   onSubmit})
+  })
+
+  const changeHandler = (event) => {
+    setUser({...user, [event.target.name] : event.target.value})
+  }
+  const {email, password} = user
+
+  const handleSubmit = async (event) => {
+    try {
+    event.preventDefault()
+      await handleLogin(email, password)
+      Navigate('/home')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className="container">
@@ -42,6 +59,7 @@ const LoginForm = () => {
           onChange={formik.handleChange}
         />
         <button type='button' onClick={formik.handleSubmit}>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

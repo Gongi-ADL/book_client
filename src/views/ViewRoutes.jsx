@@ -31,6 +31,9 @@ const ViewRoutes = () => {
             <Route index element={ <Author />} />
           </Route>
         </Route>
+        <Route path='home' element={<Home />} />
+        <Route path='book/:id' element={<Book />} />
+        <Route path='about' element={<About />} />
         <Route path='*' element={<Home />} />
       </Route>
     </Routes>

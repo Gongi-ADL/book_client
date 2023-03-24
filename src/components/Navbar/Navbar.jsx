@@ -27,6 +27,7 @@ const Navbar = () => {
         <a className='esp-button' onClick={() => Navigate('/home/author')}> Authors </a>
         <a onClick={() => Navigate('/home')}>Home</a>
         <a onClick={() => Navigate('/home/about')}>About Us</a>
+        <a onClick={() => Navigate('/about')}>About Us</a>
         <a onClick={handleLogout}>Logout</a>
       </div>
     </header>
