@@ -15,10 +15,6 @@ const Home = () => {
             setBooks(response)
         } 
         getDatas(), protectRoutes})
-            const response = await getBook()
-            setBooks(response)
-        } 
-        getDatas(), protectRoutes})
     const handleNavigate = (id) => {
         Navigate(`/home/book/${id}`)
     }
