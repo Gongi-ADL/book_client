@@ -42,6 +42,8 @@ const LoginForm = () => {
           onChange={formik.handleChange}
         />
         <button type='button' onClick={formik.handleSubmit}>Submit</button>
+
+      <a onClick={() => Navigate('/register')} className='goReg'> Go Register</a>
       </form>
     </div>
   );

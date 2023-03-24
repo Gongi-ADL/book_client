@@ -32,3 +32,11 @@ input, label, button{
   align-items: center;
   justify-content: center;
 }
+
+
+.goReg {
+  color: blue;
+  margin-top: 50px;
+  text-decoration: underline;
+  cursor: pointer;
+}
