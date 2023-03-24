@@ -2,14 +2,26 @@ import React, { useEffect, useState } from 'react';
 import './Login.css'
 import { handleLogin } from '../../utils/api/fetch/axiosActions';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
 import axiosInstance from '../../utils/api/axiosInstance';
 
 
 const LoginForm = () => {
   const Navigate = useNavigate()
-  const [user, setUser] = useState({
+  
+  const onSubmit = async (values) => {
+    try {
+      await handleLogin(formik.values.email, formik.values.password)
+      Navigate('/home')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const formik = useFormik({initialValues: {
     email: '',
     password: ''
+  }, validateOnBlur: true, 
+  onSubmit})
   })
 
   const changeHandler = (event) => {
@@ -35,17 +47,18 @@ const LoginForm = () => {
           type="email"
           id="email"
           name='email'
-          value={email}
-          onChange={changeHandler}
+          value={formik.values.email}
+          onChange={formik.handleChange}
         />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
           name='password'
-          value={password}
-          onChange={changeHandler}
+          value={formik.values.password}
+          onChange={formik.handleChange}
         />
+        <button type='button' onClick={formik.handleSubmit}>Submit</button>
         <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
