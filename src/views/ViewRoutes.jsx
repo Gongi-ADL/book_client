@@ -16,6 +16,7 @@ const ViewRoutes = () => {
   <Router>
     <Routes> 
       <Route path='/'>
+        <Route index element={<Home />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
         <Route path='home'>
