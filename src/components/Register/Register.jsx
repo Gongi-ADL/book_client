@@ -3,12 +3,13 @@ import './Register.css'
 import {useNavigate} from 'react-router-dom'
 import { handleRegister } from '../../utils/api/fetch/axiosActions';
 import { useFormik } from 'formik';
+import axios from 'axios';
 const Register = () => {
   const Navigate = useNavigate()
   
   const onSubmit = async (values) => {
       try{
-            await handleRegister(formik.values.username, formik.values.email, formik.values.password)
+            await axios.post('https://libreria-production.up.railway.app/register', formik.values.username, formik.values.email, formik.values.password)
             Navigate('/login')
         } catch(error) {
             console.error(error);
