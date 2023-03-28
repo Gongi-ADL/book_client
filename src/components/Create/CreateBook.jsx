@@ -24,6 +24,10 @@ const CreateBook = () => {
         console.error(error)
       }
     }
+
+    const returnButton = () => {
+      Navigate('/home')
+    }
     const protectRoutes = () => {
       ProtectRoutes
     }
@@ -89,7 +93,11 @@ const CreateBook = () => {
             value={formik.values.date}
             onChange={formik.handleChange}
           />
-          <button type="submit">Submit</button>
+          <div className='buttons-div'>
+            <button onClick={returnButton}>Cancel</button>
+            <button type="submit">Create</button>
+          </div>
+          
         </form>
       </div>
     )
