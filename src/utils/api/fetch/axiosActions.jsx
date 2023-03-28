@@ -23,11 +23,11 @@ const getBooks = async () =>{
 
 
 const handleLogin = async (email, password) => {
-    const cookies = Cookies()
+    const cookies = new Cookies()
     try{
         await axiosInstance.post('/login', { email, password })
         localStorage.setItem('loggeado', 'logged')
-        cookies.set('session_token', "123")
+        cookies.set('session_token', 'test')
     } catch(error) {
         console.error(error);
       };
