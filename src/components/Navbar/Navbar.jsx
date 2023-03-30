@@ -2,8 +2,6 @@ import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import axiosInstance from '../../utils/api/axiosInstance'
 
-//importando diseños:
-import './Navbar.css'
 
 const Navbar = () => {
   const Navigate = useNavigate()
@@ -17,19 +15,22 @@ const Navbar = () => {
     }
   }
   return (
-    <header> 
-      <div className='image-title'>
-        <img src="https://imgs.search.brave.com/X4TmVaNeeio6oN-CxgwELyur6SA--uiKX3siVcmNHbg/rs:fit:1200:1200:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9ib29rL2Jvb2tf/UE5HMjExNi5wbmc" alt="" srcset="" width="80px"/>
-        <h1>Books Library</h1>
+    <div className="shadow-md w-full top-0 left-0">
+      <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
+        <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800' onClick={() => Navigate('/home')}>
+          <span className='text-3xl text-black mr-1 pt-2'> <ion-icon name="book-outline"></ion-icon> </span>
+          Book Library
+        </div>
+        <div className='font-bold text-ls flex items-center font-[Poppins] text-gray-800'>
+          <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home/create')}> Create Book </a>
+          <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home/author')}> Authors </a>
+          <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home')}>Home</a>
+          <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home/about')}>About Us</a>
+          <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={handleLogout}>Logout</a>
       </div>
-      <div className='nav'>
-        <a className='esp-button' onClick={() => Navigate('/home/create')}> Create Book </a>
-        <a className='esp-button' onClick={() => Navigate('/home/author')}> Authors </a>
-        <a onClick={() => Navigate('/home')}>Home</a>
-        <a onClick={() => Navigate('/home/about')}>About Us</a>
-        <a onClick={handleLogout}>Logout</a>
       </div>
-    </header>
+      
+    </div>
   )
 }
 

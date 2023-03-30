@@ -1,16 +1,13 @@
 import { useFormik } from 'formik'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { createAuthor } from '../../../utils/api/fetch/axiosActions'
-import './Author.css'
 
 const CreateAuthor = () => {
-  const Navigate = useNavigate()
+
   const onSubmit = async (values) => {
     values.preventDefault()
     try{
           await createAuthor(formik.values.name)
-          Navigate('/home')
       } catch(error) {
           console.error(error);
         };

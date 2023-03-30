@@ -1,22 +1,26 @@
 import React from 'react'
-import './About.css'
 import {useNavigate} from 'react-router-dom'
+import Navbar from '../Navbar/Navbar'
 const About = () => {
-    //declarando navegacion
     const Navigate = useNavigate()
     return (
         <div className='main-container'>
-            <div className='a-header'>
+            <Navbar />
+            <div className='container mx-auto flex items-center justify-center p-10'>
+            <div className='shadow-md bg-white h-[400px] w-[800px] p-4'>
+            <div className=' font-bold text-2xl mb-2'>
                 <h1>About us and the Project</h1>
-                <span className='to-home' onClick={() => Navigate('/home')}>
-                    Go Home
-                </span>
             </div>
             <hr />
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem, perferendis 
-                est! Architecto aliquam autem, aperiam eligendi aut labore 
-                explicabo doloremque dolorem, exercitationem voluptate ad excepturi 
-                repellendus hic cupiditate, reiciendis aspernatur.</p>
+            <div className='mt-4 text-justify'>
+            <p> 
+                This project was created in the porpuse to prove my abilities to create an API REST
+                and consume it... Was created with: VITE - REACT - JS - AXIOS - FORMIK.
+            </p>
+            </div>
+            </div>
+            
+            </div>
         </div>
     )
 }
