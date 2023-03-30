@@ -16,7 +16,7 @@ const UpdateBook = () => {
   const createSchema = Yup.object({
     book: Yup.string().min(5).required('You must provide a title'),
     price: Yup.string().required('You must provide a price'),
-    description: Yup.string().min(60).max(100).required('You must provide a description'),
+    description: Yup.string().min(60).required('You must provide a description'),
     type: Yup.string().required('You must provide a type'),
     author: Yup.string().required('You must provide an author'),
     date: Yup.date().required('You must provide a date')
