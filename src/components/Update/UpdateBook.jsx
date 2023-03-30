@@ -100,7 +100,7 @@ const UpdateBook = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className='bg-gray-200 text-left p-1'/>
-            {formik.errors.book && formik.touched.book && <span className='error'>{formik.errors.book}</span>}
+            {formik.errors.book && formik.touched.book && <span className='text-red-400'>{formik.errors.book}</span>}
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="price">Price:</label>
@@ -112,7 +112,7 @@ const UpdateBook = () => {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             className='bg-gray-200 text-left p-1'/>
-            {formik.errors.price && formik.touched.price && <span className='error'>{formik.errors.price}</span>}
+            {formik.errors.price && formik.touched.price && <span className='text-red-400'>{formik.errors.price}</span>}
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="descrip">Description:</label>
@@ -122,7 +122,7 @@ const UpdateBook = () => {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             className='bg-gray-200 text-left p-1 h-20 resize-none'/>
-            {formik.errors.description && formik.touched.description && <span className='error'>{formik.errors.description} </span>}
+            {formik.errors.description && formik.touched.description && <span className='text-red-400'>{formik.errors.description} </span>}
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="type">Book Type:</label>
@@ -134,7 +134,7 @@ const UpdateBook = () => {
             value={formik.values.type}
             onChange={formik.handleChange}
             className='bg-gray-200 text-left p-1'/>
-            {formik.errors.type && formik.touched.type && <span className='error'> {formik.errors.type} </span>}
+            {formik.errors.type && formik.touched.type && <span className='text-red-400'> {formik.errors.type} </span>}
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="author">Book Author:</label>
@@ -146,7 +146,7 @@ const UpdateBook = () => {
                     <option key={autor.author_id} className='author-card' value={autor?.author_id}> {autor?.author_id} - {autor?.author_name}</option>
                 ))}
           </select>
-          {formik.errors.author && formik.touched.author && <span className='error'> {formik.errors.author} </span>}
+          {formik.errors.author && formik.touched.author && <span className='text-red-400'> {formik.errors.author} </span>}
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="image" className='mb-1'>Add a Cover Image:</label>
@@ -164,7 +164,7 @@ const UpdateBook = () => {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             className={formik.errors.date && formik.touched.date ? 'error-input': ""} />
-            {formik.errors.date && formik.touched.date && <span className='error'> {formik.errors.date} </span>}
+            {formik.errors.date && formik.touched.date && <span className='text-red-400'> {formik.errors.date} </span>}
           </div>
           <div className='flex items-center justify-center gap-5 mb-2'>
             <button onClick={() => {
