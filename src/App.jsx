@@ -5,7 +5,7 @@ import ViewRoutes from './views/ViewRoutes'
 
 const app = () => {
   return(
-    <div className="w-full h-screen bg-gray-100">
+    <div className="w-full h-screen overflow-auto bg-gray-100">
     <ViewRoutes />
     <ToastContainer />
     </div>
