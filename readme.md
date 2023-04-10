@@ -1,6 +1,5 @@
 ## Tech Stack
 
-NodeJS, Express, Sequelize (MySQL) -- Backend
 Vite, React, JavaScrpit -- Frontend
 
 ## Run Locally
