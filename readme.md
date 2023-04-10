@@ -20,4 +20,4 @@ Run the server:
 
 `npm run dev`
 
-Now you can use this client
+Now you can use it
