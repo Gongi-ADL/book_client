@@ -34,7 +34,7 @@ const Home = () => {
                 </div>
                 <div className='p-3 text-justify'>
                     <span className='font-bold block mt-3'> Description: </span>
-                    <p className='line-clamp-3 h-20'> 
+                    <p className='line-clamp-3 h-19'> 
                         {book.book_desc.book_desc} 
                     </p>
                     <span className='block mt-3 font-bold'>
