@@ -7,7 +7,7 @@ const Navbar = () => {
   const Navigate = useNavigate()
   const handleLogout = async () => {
     try{
-      await axiosInstance.get('/logout')
+      await axiosInstance.post('/logout')
       Navigate('/login')
       window.localStorage.setItem('loggeado', 'deslogeado')
     } catch (error) {
