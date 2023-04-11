@@ -1,13 +1,29 @@
-import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
-import { getAuthor, handleCreate } from '../../utils/api/fetch/axiosActions';
+import { getAuthor, getGenres, handleCreate } from '../../utils/api/fetch/axiosActions';
 import ProtectRoutes from '../../utils/ProtectRoutes';
 import * as Yup from 'yup';
 
 const CreateBook = () => {
+  const [Author, setAuthor] = useState([])
+  const [Genre, setGenre] = useState([])
+  const protectRoutes = ProtectRoutes()
+
+  const getAuthors = async () => {
+      const response = await getAuthor()
+      setAuthor(response)
+  }
+
+  const getGenre = async () => {
+    const response = await getGenres()
+    setGenre(response)
+  }
+  useEffect(() => {
+    getAuthors(), getGenre(), protectRoutes
+  }, [])
+
   const createSchema = Yup.object({
     book: Yup.string().min(5).required('You must provide a title'),
     price: Yup.string().required('You must provide a price'),
@@ -16,16 +32,11 @@ const CreateBook = () => {
     author: Yup.string().required('You must provide an author'),
     date: Yup.date().required('You must provide a date'),
   })
-  const [Author, setAuthor] = useState([]) 
 
-  const getAuthors = async () => {
-      const response = await getAuthor()
-      setAuthor(response)
-  }
 
   function notifyByCreation(){
     toast.success('Book succesfully created!', {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -39,9 +50,6 @@ const CreateBook = () => {
       });
   }
 
-  useEffect(() => {
-      getAuthors()
-  }, [])
   const Navigate = useNavigate()
   const onSubmit = async (values) => {
     values.preventDefault()
@@ -60,13 +68,6 @@ const CreateBook = () => {
         console.error(error)
       }
     }
-    const protectRoutes = () => {
-      ProtectRoutes
-    }
-    
-    useEffect(() => {
-      protectRoutes()
-    })
     
     const formik = useFormik({
       initialValues: {
@@ -124,15 +125,19 @@ const CreateBook = () => {
             {formik.errors.description && formik.touched.description && <span className='text-red-400'>{formik.errors.description} </span>}
           </div>
           <div className='p-4 flex flex-col'>
-          <label htmlFor="type">Book Type:</label>
-          <input
+          <select
             type='text'
             id="type"
             name="type"
             onBlur={formik.handleBlur}
             value={formik.values.type}
             onChange={formik.handleChange}
-            className='bg-gray-200 text-left p-1'/>
+            className='bg-gray-200 text-left p-1'>
+              <option value={null}>Select a Type</option>
+              {Genre?.map(genre => (
+                <option key={genre.id_type} className='genre-card' value={genre?.type}> {genre?.type} </option>
+              ))}  
+          </select>
             {formik.errors.type && formik.touched.type && <span className='text-red-400'> {formik.errors.type} </span>}
           </div>
           <div className='p-4 flex flex-col'>

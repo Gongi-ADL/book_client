@@ -3,6 +3,7 @@ import { handleLogin } from '../../utils/api/fetch/axiosActions';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import {toast} from 'react-toastify'
 
 const LoginForm = () => {
   const LoginSchema = Yup.object({
@@ -10,11 +11,29 @@ const LoginForm = () => {
     password: Yup.string().required('Pasword is required')
   })
   const Navigate = useNavigate()
+
+  function notifyByWrongCredentials(){
+    toast.warn('The credentials are wrong!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
   
   const onSubmit = async (values) => {
     try {
-      await handleLogin(formik.values.email, formik.values.password)
-      Navigate('/home')
+      const response = await handleLogin(formik.values.email, formik.values.password)
+      if (response == 'The credentials are wrong') {
+        notifyByWrongCredentials()
+      }
+      else{
+        Navigate('/home')
+      }
     } catch (error) {
       console.error(error)
     }

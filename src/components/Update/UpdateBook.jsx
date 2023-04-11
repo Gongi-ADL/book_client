@@ -2,25 +2,34 @@ import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import { useParams } from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
-import { handleUpdate } from '../../utils/api/fetch/axiosActions'
+import { getGenres, handleUpdate } from '../../utils/api/fetch/axiosActions'
 import { getBook } from '../../utils/api/fetch/axiosActions'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 import { getAuthor } from '../../utils/api/fetch/axiosActions'
+import ProtectRoutes from '../../utils/ProtectRoutes'
 
 const UpdateBook = () => {
   const {id} = useParams()
   const Navigate = useNavigate()
   const [Book, setBook] = useState({})
-  const [Author, setAuthor] = useState([]) 
+  const [Genre, setGenre] = useState([])
+  const [Author, setAuthor] = useState([])
+  const protectRoutes = ProtectRoutes()
   const createSchema = Yup.object({
     book: Yup.string().min(5).required('You must provide a title'),
     price: Yup.string().required('You must provide a price'),
-    description: Yup.string().min(60).required('You must provide a description'),
+    description: Yup.string().min(60).max(100).required('You must provide a description'),
     type: Yup.string().required('You must provide a type'),
     author: Yup.string().required('You must provide an author'),
     date: Yup.date().required('You must provide a date')
   })
+
+  const getGenre = async () => {
+    const response = await getGenres()
+    setGenre(response)
+  }
+
   const takeData = async () => {
     const response = await getBook(id)
     setBook(response)
@@ -30,7 +39,7 @@ const UpdateBook = () => {
     setAuthor(response)
 }
   useEffect(() => {
-    takeData(), getAuthors()
+    takeData(), getAuthors(), getGenre(), protectRoutes
   }, [id])
 
   function notifyByCreation(){
@@ -126,14 +135,19 @@ const UpdateBook = () => {
           </div>
           <div className='p-4 flex flex-col'>
           <label htmlFor="type">Book Type:</label>
-          <input
+          <select
             type='text'
             id="type"
             name="type"
             onBlur={formik.handleBlur}
             value={formik.values.type}
             onChange={formik.handleChange}
-            className='bg-gray-200 text-left p-1'/>
+            className='bg-gray-200 text-left p-1'>
+              <option value={null}>Select a Type</option>
+              {Genre?.map(genre => (
+                <option key={genre.id_type} className='genre-card' value={genre?.type}> {genre?.type} </option>
+              ))}  
+          </select>
             {formik.errors.type && formik.touched.type && <span className='text-red-400'> {formik.errors.type} </span>}
           </div>
           <div className='p-4 flex flex-col'>

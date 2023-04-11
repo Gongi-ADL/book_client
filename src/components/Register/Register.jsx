@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import { handleRegister } from '../../utils/api/fetch/axiosActions';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import {toast} from 'react-toastify'
 const Register = () => {
   const Navigate = useNavigate()
   const registerSchema = Yup.object({
@@ -10,16 +11,64 @@ const Register = () => {
     email: Yup.string().email().required('Email is required'),
     password: Yup.string().min(7).required('Password is required')
   })
+
+  function notiyByExistingEmail(){
+    toast.warn('The email already exists!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+  function notifyByShortUsername(){
+    toast.warn('The username is too short! (min:6)', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+  function notifyByLongUsername(){
+    toast.warn('The username is too long! (max: 20)', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
   const onSubmit = async (values) => {
     values.preventDefault()
       try{
-            await handleRegister(formik.values.username, formik.values.email, formik.values.password)
-            Navigate('/login')
+            const response = await handleRegister(formik.values.username, formik.values.email, formik.values.password)
+            if(response == 'The username is too short'){
+              notifyByShortUsername()
+            }
+            else if (response == 'The email already exists'){
+              notiyByExistingEmail()
+            }
+            else if (response == 'The username is too long'){
+              notifyByLongUsername()
+            }
+            else {
+              Navigate('/login')
+            }
         } catch(error) {
             console.error(error);
           };
       }
-
+      
       const formik = useFormik({
         initialValues: {
           username: '', 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getBook, handleDelete } from '../../utils/api/fetch/axiosActions'
+import { getBook} from '../../utils/api/fetch/axiosActions'
 import ProtectRoutes from '../../utils/ProtectRoutes'
 import Navbar from '../Navbar/Navbar'
-
-import { toast } from 'react-toastify';
+import Modal from './Modal'
 
 const Book = () => {
-  ProtectRoutes
+  const [IsOpen, setIsOpen] = useState(false)
+  const protectRoutes = ProtectRoutes()
   const Navigate = useNavigate()
   const [Book, setBook] = useState({})
   const {id} = useParams()
@@ -17,33 +17,11 @@ const Book = () => {
   }
   
   useEffect(() => {
-    takeData()
+    takeData(), protectRoutes
   }, [id])
 
-  const notifybyDelete = () => {
-    toast.success('Book was succesfully deleted!', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      onClose: () => {
-        Navigate('/home')
-      }
-      });
-  }
-
-  const deleteBook = async (event) => {
-    try {
-      event.preventDefault()
-      await handleDelete(id)
-      notifybyDelete()
-    } catch (error) {
-      console.error(error)
-    }
+  const openModal = () => {
+      setIsOpen(!IsOpen)
   }
 
   const updateBook = (id) => {
@@ -78,9 +56,10 @@ const Book = () => {
                 <span>{Book?.book_price}</span>
               </div>
               <div className='flex items-center justify-center gap-5 mb-2'>
-            <a onClick={deleteBook} className='bg-gray-200 p-2 cursor-pointer hover:bg-gray-300 duration-500 rounded-md'>
+            <a onClick={openModal} className='bg-red-400 text-black p-2 cursor-pointer hover:bg-red-600 hover:text-white duration-500 rounded-md'>
               Delete Book
             </a>
+            {IsOpen && <Modal isOpen={setIsOpen} bookId={id} />}
             <a onClick={() => updateBook(id)} className='bg-gray-200 p-2 cursor-pointer hover:bg-gray-300 duration-500 rounded-md'>
               Update Book
             </a>
