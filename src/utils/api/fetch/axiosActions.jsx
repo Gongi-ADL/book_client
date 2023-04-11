@@ -1,5 +1,7 @@
+
 import axiosInstance from "../axiosInstance"
-import Cookies from 'universal-cookie'
+import Cookies from "universal-cookie"
+
 const getBook = async (id) => {
     try {
         const response = await axiosInstance.get(`/book/${id}`)
@@ -31,12 +33,12 @@ const handleLogin = async (email, password) => {
       };
   };
 
-
 const handleRegister = async (usuario, email, password) => {
     try{
-        await axiosInstance.post('/register', { usuario, email, password })
+          await axiosInstance.post('/register', { usuario, email, password })
+          Navigate('/login')
       } catch(error) {
-          return error.response.data
+          console.error(error);
         };
     }
  
@@ -82,24 +84,6 @@ try {
     console.error(error)
 }
 }
-
-const handleDeleteAuthor = async (id) => {
-    try{
-        const res = await axiosInstance.delete(`/author/${id}`)
-        return res
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-const getGenres = async () => {
-    try{ 
-        const res = await axiosInstance.get('/btype')
-        return res.data
-    } catch (error) {
-        console.error(error)
-    }
-}
 export {
     getBook,
     getBooks,
@@ -109,7 +93,5 @@ export {
     handleCreate, 
     handleUpdate,
     createAuthor,
-    getAuthor,
-    handleDeleteAuthor,
-    getGenres
+    getAuthor
 }

@@ -20,7 +20,7 @@ const Home = () => {
         return (
     <div>
                 <Navbar /> 
-        <div className='container mx-auto w-full flex flex-col flex-wrap justify-start gap-5 items-center p-3 sm:flex-row'>
+        <div className='container mx-auto w-full flex flex-wrap justify-start gap-5 items-center p-3'>
                 {Books?.map(book => (<div key={book.id_book} className='shadow-md gap-3'>
                     <div className='bg-white h-[500px] w-[270px]'>
                     <div className='h-48'>
