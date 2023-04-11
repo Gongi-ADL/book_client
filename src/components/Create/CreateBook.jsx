@@ -125,6 +125,7 @@ const CreateBook = () => {
             {formik.errors.description && formik.touched.description && <span className='text-red-400'>{formik.errors.description} </span>}
           </div>
           <div className='p-4 flex flex-col'>
+          <label htmlFor="type">Book Type:</label>
           <select
             type='text'
             id="type"
