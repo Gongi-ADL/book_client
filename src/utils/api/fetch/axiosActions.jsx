@@ -1,3 +1,4 @@
+import axios from "axios"
 import axiosInstance from "../axiosInstance"
 const getBook = async (id) => {
     try {
@@ -21,10 +22,11 @@ const getBooks = async () =>{
 
 const handleLogin = async (email, password) => {
     try{
-        await axiosInstance.post('/login', { email, password }, {
+    const res =  await axios.post('https://librariacrud-i6c8.onrender.com/login', { email, password }, {
         withCredentials: true
   })
-        localStorage.setItem('loggeado', 'logged')
+    localStorage.setItem('loggeado', 'logged')
+    return res
     } catch(error) {
         return error.response.data
       };
