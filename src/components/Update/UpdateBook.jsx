@@ -5,9 +5,9 @@ import {useNavigate} from 'react-router-dom'
 import { getGenres, handleUpdate } from '../../utils/api/fetch/axiosActions'
 import { getBook } from '../../utils/api/fetch/axiosActions'
 import * as Yup from 'yup'
-import {toast} from 'react-toastify'
 import { getAuthor } from '../../utils/api/fetch/axiosActions'
 import ProtectRoutes from '../../utils/ProtectRoutes'
+import Modal from './Modal'
 
 const UpdateBook = () => {
   const {id} = useParams()
@@ -15,6 +15,8 @@ const UpdateBook = () => {
   const [Book, setBook] = useState({})
   const [Genre, setGenre] = useState([])
   const [Author, setAuthor] = useState([])
+  const [IsOpen, setIsOpen] = useState('')
+  const [IsData, setIsData] = useState('')
   const protectRoutes = ProtectRoutes()
   const createSchema = Yup.object({
     book: Yup.string().min(5).required('You must provide a title'),
@@ -42,23 +44,7 @@ const UpdateBook = () => {
     takeData(), getAuthors(), getGenre(), protectRoutes
   }, [id])
 
-  function notifyByCreation(){
-    toast.success('Book succesfully updated!', {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      onClose: () => {
-        Navigate(`/home/book/${id}`)
-      }
-      });
-  }
-
-  const onSubmit = async (values) => {
+  const openModal = (values) => {
     values.preventDefault()
     let upload = new FormData()
     upload.append('file', formik.values.image, 'image')
@@ -68,12 +54,8 @@ const UpdateBook = () => {
     upload.append('type', formik.values.type)
     upload.append('author', formik.values.author)
     upload.append('date', formik.values.date)
-      try {
-        await handleUpdate(id, upload)
-        notifyByCreation()
-      } catch (error) {
-        console.error(error)
-      }
+    setIsOpen(!IsOpen)
+    setIsData(upload)
     }
 
     const formik = useFormik({
@@ -87,7 +69,6 @@ const UpdateBook = () => {
         date: Book.book_date 
       }, 
       enableReinitialize: true, 
-      onSubmit, 
       validateOnBlur: true,
       validationSchema: createSchema
     })
@@ -98,7 +79,7 @@ const UpdateBook = () => {
           <div className='font-bold text-2xl font-[Poppins] text-center h-24 flex items-center justify-center'>
             Update a Book
           </div>
-          <form onSubmit={onSubmit}>
+          <form>
           <div className='p-4 flex flex-col'>
           <label htmlFor="book">Name:</label>
           <input
@@ -184,7 +165,8 @@ const UpdateBook = () => {
             <button onClick={() => {
             Navigate('/home')
             }} className='bg-gray-200 p-2 hover:bg-gray-300 duration-500 rounded-md'>Cancel</button>
-            <button className='bg-gray-200 p-2 hover:bg-gray-300 duration-500 rounded-md' type="submit">Submit</button>
+            <button className='bg-gray-200 p-2 hover:bg-gray-300 duration-500 rounded-md' onClick={openModal}>Update</button>
+            {IsOpen && <Modal isOpen={setIsOpen} bookId={id} isData={IsData} /> }
           </div>
         </form>
         </div>

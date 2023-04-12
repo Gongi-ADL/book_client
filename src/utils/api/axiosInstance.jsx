@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: "https://libreria-production.up.railway.app",
+    baseURL: "http://localhost:4000",
     withCredentials: true
   })
 

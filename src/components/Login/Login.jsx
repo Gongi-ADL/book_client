@@ -31,8 +31,11 @@ const LoginForm = () => {
       if (response == 'The credentials are wrong') {
         notifyByWrongCredentials()
       }
-      else{
-        Navigate('/home')
+      else if (response == 'The email does not exists'){
+        notifyByWrongCredentials()
+      }
+      else {
+        Navigate('/Home')
       }
     } catch (error) {
       console.error(error)

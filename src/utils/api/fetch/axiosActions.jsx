@@ -1,5 +1,4 @@
 import axiosInstance from "../axiosInstance"
-import Cookies from 'universal-cookie'
 const getBook = async (id) => {
     try {
         const response = await axiosInstance.get(`/book/${id}`)
@@ -21,13 +20,11 @@ const getBooks = async () =>{
 
 
 const handleLogin = async (email, password) => {
-    const cookies = new Cookies()
     try{
         await axiosInstance.post('/login', { email, password })
         localStorage.setItem('loggeado', 'logged')
-        cookies.set('session_token', 'test')
     } catch(error) {
-        console.error(error);
+        return error.response.data
       };
   };
 
