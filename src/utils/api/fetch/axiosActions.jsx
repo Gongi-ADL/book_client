@@ -21,11 +21,7 @@ const getBooks = async () =>{
 
 const handleLogin = async (email, password) => {
     try{
-       await fetch('https://librariacrud-i6c8.onrender.com/login', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify({email, password})
-        })
+        await axiosInstance.post('/login', {email, password })
         localStorage.setItem('loggeado', 'logged')
     } catch(error) {
         return error.response.data
