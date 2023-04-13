@@ -9,7 +9,7 @@ const Navbar = () => {
     try{
       await axiosInstance.get('/logout')
       Navigate('/login')
-      window.localStorage.setItem('loggeado', 'deslogeado')
+      localStorage.removeItem('loggeado', 'deslogeado')
     } catch (error) {
       console.error(error)
     }
