@@ -48,8 +48,8 @@ const Author = () => {
                             <a className='bg-red-500 rounded-md font-semibold text-white cursor-pointer hover:bg-red-700 duration-300 w-32 p-1 text-center' onClick={() => openModal(autor.author_id)}>
                                 Delete
                             </a>
+                            {IsOpen && <Modal isOpen={setIsOpen} authorid={ActualAuthor} />}
                         </div>
-                        {IsOpen && <Modal isOpen={setIsOpen} authorid={ActualAuthor} />}
                     </div>
                 ))}
                 <div className='shadow-md bg-white w-60 h-48 flex justify-center items-center text-8xl cursor-pointer hover:bg-gray-200 duration-300'>
