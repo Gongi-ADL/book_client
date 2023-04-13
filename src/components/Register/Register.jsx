@@ -36,6 +36,18 @@ const Register = () => {
       theme: "light",
       });
   }
+  function notifyByShortPassword(){
+    toast.warn('The password is too short! (min:7)', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
   function notifyByLongUsername(){
     toast.warn('The username is too long! (max: 20)', {
       position: "top-center",
@@ -60,6 +72,9 @@ const Register = () => {
             }
             else if (response == 'The username is too long'){
               notifyByLongUsername()
+            }
+            else if (response == 'The password is too short'){
+              notifyByShortPassword()
             }
             else {
               Navigate('/login')
