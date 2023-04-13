@@ -43,7 +43,7 @@ const Home = () => {
                 </div>
                 <div className='text-center mt-3 w-full'>
                 <a onClick={() => handleNavigate(book.id_book)} className='bg-slate-500 text-white p-2 rounded-md cursor-pointer hover:bg-slate-700 duration-500'>
-                Leer más  
+                Read More  
                 </a>
                 </div>
             </div>
