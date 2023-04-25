@@ -2,7 +2,6 @@ import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
 const About = () => {
-    const Navigate = useNavigate()
     return (
         <div className='main-container'>
             <Navbar />
@@ -14,8 +13,8 @@ const About = () => {
             <hr />
             <div className='mt-4 text-justify'>
             <p> 
-                This project was created in the porpuse to prove my abilities to create an API REST
-                and consume it... Was created with: VITE - REACT - JS - AXIOS - FORMIK.
+                Created with VITE - React JS this website allows you to create, store, edit and
+                delete books.
             </p>
             </div>
             </div>

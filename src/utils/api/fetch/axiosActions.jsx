@@ -21,9 +21,7 @@ const getBooks = async () =>{
 
 const handleLogin = async (email, password) => {
     try{
-        await axiosInstance.post('/login', { email, password }, {
-        withCredentials: true
-  })
+        await axiosInstance.post('/login', {email, password })
         localStorage.setItem('loggeado', 'logged')
     } catch(error) {
         return error.response.data

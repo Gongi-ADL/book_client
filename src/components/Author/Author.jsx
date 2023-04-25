@@ -53,7 +53,9 @@ const Author = () => {
                     </div>
                 ))}
                 <div className='shadow-md bg-white w-60 h-48 flex justify-center items-center text-8xl cursor-pointer hover:bg-gray-200 duration-300'>
-                    <a onClick={openAddModal}><ion-icon name="add-outline"></ion-icon></a>
+                    <a onClick={openAddModal}>
+                        {IsOpen ? '' : <ion-icon name="add-outline"></ion-icon> } 
+                    </a>
                     {AddModal && <AModal isOpen={setAddModal} />}
                 </div>
 
