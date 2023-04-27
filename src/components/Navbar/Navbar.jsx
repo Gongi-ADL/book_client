@@ -21,7 +21,7 @@ const Navbar = () => {
           <span className='text-3xl text-black mr-1 pt-2'> <ion-icon name="book-outline"></ion-icon> </span>
           Book Library
         </div>
-        <div className='font-bold text-ls flex gap-2 items-center font-[Poppins] text-gray-800'>
+        <div className='font-bold text-ls flex gap-2 text-xs sm:text-sm md:text-base items-center font-[Poppins] text-gray-800'>
           <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home/create')}> Create Book </a>
           <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home/author')}> Authors </a>
           <a className='md:ml-8 sm:ml-3 hover:text-gray-400 duration-500 cursor-pointer' onClick={() => Navigate('/home')}>Home</a>
