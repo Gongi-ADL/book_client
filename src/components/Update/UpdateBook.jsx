@@ -48,13 +48,22 @@ const UpdateBook = () => {
   const openModal = (values) => {
     values.preventDefault()
     let upload = new FormData()
-    upload.append('file', formik.values.image, 'image')
-    upload.append('book', formik.values.book)
-    upload.append('price', formik.values.price)
-    upload.append('descrip', formik.values.description)
-    upload.append('type', formik.values.type)
-    upload.append('author', formik.values.author)
-    upload.append('date', formik.values.date)
+    if (formik.values.image != 0) {
+      upload.append('file', formik.values.image, 'image')
+      upload.append('book', formik.values.book)
+      upload.append('price', formik.values.price)
+      upload.append('descrip', formik.values.description)
+      upload.append('type', formik.values.type)
+      upload.append('author', formik.values.author)
+      upload.append('date', formik.values.date)
+    } else {
+      upload.append('book', formik.values.book)
+      upload.append('price', formik.values.price)
+      upload.append('descrip', formik.values.description)
+      upload.append('type', formik.values.type)
+      upload.append('author', formik.values.author)
+      upload.append('date', formik.values.date)
+    }
     setIsOpen(!IsOpen)
     setIsData(upload)
     }

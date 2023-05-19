@@ -37,7 +37,7 @@ const CreateBook = () => {
   function notifyByCreation(){
     toast.success('Book succesfully created!', {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -54,13 +54,23 @@ const CreateBook = () => {
   const onSubmit = async (values) => {
     values.preventDefault()
     let upload = new FormData()
-    upload.append('file', formik.values.image, 'image')
-    upload.append('book', formik.values.book)
-    upload.append('price', formik.values.price)
-    upload.append('descrip', formik.values.description)
-    upload.append('type', formik.values.type)
-    upload.append('author', formik.values.author)
-    upload.append('date', formik.values.date)
+    if (formik.values.image.length != 0) {
+      upload.append('file', formik.values.image, 'image')
+      upload.append('book', formik.values.book)
+      upload.append('price', formik.values.price)
+      upload.append('descrip', formik.values.description)
+      upload.append('type', formik.values.type)
+      upload.append('author', formik.values.author)
+      upload.append('date', formik.values.date)
+    }
+    else {
+      upload.append('book', formik.values.book)
+      upload.append('price', formik.values.price)
+      upload.append('descrip', formik.values.description)
+      upload.append('type', formik.values.type)
+      upload.append('author', formik.values.author)
+      upload.append('date', formik.values.date)
+    }
       try {
         await handleCreate(upload)
         notifyByCreation()

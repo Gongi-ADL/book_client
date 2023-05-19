@@ -9,7 +9,7 @@ const AddModal = ({isOpen}) => {
   const notifybyCreation = () => {
     toast.success('Author succesfully added!', {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
